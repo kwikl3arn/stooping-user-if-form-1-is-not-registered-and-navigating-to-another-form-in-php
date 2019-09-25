@@ -1,3 +1,4 @@
+<?php
 class Mycontroller extends CI_Controller {
 
     public function __construct() {
@@ -37,7 +38,7 @@ class Mycontroller extends CI_Controller {
             if ($verify == 1) {
                 $result = $this->session->userdata['sessiondata'];
 
-                redirect('Welcome');
+                redirect('Application_1');
             } else {
                 $this->session->set_flashdata('usercheck', 'Invalid Username or Password');
                 $this->load->view('login');
@@ -48,6 +49,7 @@ class Mycontroller extends CI_Controller {
        // $this->sess();
         $this->load->view('form1');
     }
+    
      public function form2() {
         $result= $this->session->userdata['appdata'];
         $verify = $result['app1'];
@@ -57,6 +59,29 @@ class Mycontroller extends CI_Controller {
         }
         $this->load->view('form2');
     }
+     public function form3() {
+        $result= $this->session->userdata['appdata'];
+        $verify = $result['app2'];
+        if($verify!=1)
+        {
+            redirect('Application_2');
+        }
+        $this->load->view('form3');
+    }
+    
+    public function form1_submit()
+    {
+     $username = $this->input->post("username");
+      $skills = $this->input->post("skills")
+          $this->Demo_Model->form1_submit($username, $skills);
+    }
+     public function form2_submit()
+    {
+     $project_name = $this->input->post("project_name");
+      $project_info = $this->input->post("project_info")
+          $this->Demo_Model->form2_submit($project_name, $project_info);
+    }
+    
      public function lout() {
 
         if (isset($this->session->userdata['sessiondata'])) {
